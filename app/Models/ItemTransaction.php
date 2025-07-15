@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ItemTransaction extends Model
 {
+    public $fillable = ["item_id",'transaction_type','qty','transaction_date','source','note','created_by'];
     public function item()
     {
         return $this->belongsTo(Item::class);

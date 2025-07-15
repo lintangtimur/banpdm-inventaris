@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Item extends Model
 {
+    public $fillable = ["code",'name','category_id','unit_id','min_stock','location','is_active'];
     public function itemTransactions()
     {
         return $this->hasMany(ItemTransaction::class);
