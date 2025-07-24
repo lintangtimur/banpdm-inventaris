@@ -25,6 +25,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/edit/{id}', [ItemTransactionController::class, 'edit'])->name('stock.edit');
         Route::patch('/edit/{id}', [ItemTransactionController::class, 'update'])->name('stock.update');
         Route::get('/stock', [ItemTransactionController::class, 'stock'])->name('stock.stock');
+        Route::delete('/delete/{id}', [ItemTransactionController::class, 'destroy'])->name('stock.destroy');
 
         Route::get("history/pdf", [ItemTransactionController::class, 'printPdf'])->name('stock.pdf');
         Route::get("pdf", [ItemTransactionController::class, 'stockPrintPdf'])->name('stock.stockpdf');

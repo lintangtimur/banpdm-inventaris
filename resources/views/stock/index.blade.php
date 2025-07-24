@@ -77,6 +77,12 @@
                                     <div class="btn-list flex-nowrap">
                                         @can("edit transaction")
                                             <a href="{{ route('stock.edit', $item->id) }}" class="btn btn-1"> Edit </a>
+                                            {{-- <a href="{{ route('stock.destroy', $item->id) }}" class="btn btn-1"> Delete </a> --}}
+                                            <form id="delete-form-{{ $item->id }}" action="{{ route('stock.destroy', $item->id) }}" method="POST" style="display: inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="button" class="btn btn-danger" onclick="confirmDelete({{ $item->id }})">Delete</button>
+                                            </form>
                                         @endcan
                                         {{-- <div class="dropdown">
                                             <button class="btn dropdown-toggle align-text-top" data-bs-toggle="dropdown">Actions</button>
@@ -100,6 +106,8 @@
 @push("scripts")
 <script src="{{ asset("libs/list.js/dist/list.min.js") }}" defer></script>
 <script src="{{ asset('libs/litepicker/dist/litepicker.js') }}" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         new List("table-default", {
@@ -136,5 +144,23 @@
         
     });
         
+</script>
+
+<script>
+    function confirmDelete(id) {
+        Swal.fire({
+            title: 'Yakin hapus?',
+            text: "Data ini tidak bisa dikembalikan!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#e3342f',
+            cancelButtonColor: '#6c757d',
+            confirmButtonText: 'Ya, hapus!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('delete-form-' + id).submit();
+            }
+        });
+    }
 </script>
 @endpush

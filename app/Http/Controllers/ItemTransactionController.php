@@ -192,9 +192,15 @@ class ItemTransactionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ItemTransaction $itemTransaction)
+    public function destroy($itemTransaction)
     {
-        //
+        try {
+            ItemTransaction::where('id', $itemTransaction)->delete();
+
+            return redirect()->back()->with('success', 'Item transaction deleted successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Failed to delete item transaction. Error: ' . $e->getMessage());
+        }
     }
 
     public function printPdf(Request $request)
