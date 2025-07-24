@@ -33,7 +33,7 @@
                     </li>
 
                     @if (auth()->user()->hasAnyPermission(['create transaction', 'edit transaction', 'export stock pdf','export transaction pdf']))
-                    <li class="nav-item @if (Route::current()->getName() == 'stock.index') active @endif" dropdown">
+                    <li class="nav-item @if (Route::current()->getName() == 'stock.index' || Route::current()->getName() == 'stock.stock')  active @endif" dropdown">
                       <a
                         class="nav-link dropdown-toggle"
                         href="#navbar-stock"
