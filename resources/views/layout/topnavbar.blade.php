@@ -32,17 +32,36 @@
                       </a>
                     </li>
 
-                    <li class="nav-item">
-                      <a class="nav-link" href="./">
+                    @if (auth()->user()->hasAnyPermission(['create transaction', 'edit transaction', 'export stock pdf','export transaction pdf']))
+                    <li class="nav-item @if (Route::current()->getName() == 'stock.index') active @endif" dropdown">
+                      <a
+                        class="nav-link dropdown-toggle"
+                        href="#navbar-stock"
+                        data-bs-toggle="dropdown"
+                        data-bs-auto-close="outside"
+                        role="button"
+                        aria-expanded="false"
+                      >
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                           <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-package"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5" /><path d="M12 12l8 -4.5" /><path d="M12 12l0 9" /><path d="M12 12l-8 -4.5" /><path d="M16 5.25l-8 4.5" /></svg></span>
                         <span class="nav-link-title"> Stock </span>
                       </a>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item @if (Route::current()->getName() == 'stock.index')
+                            active
+                        @endif" href="{{ route('stock.index') }}"> History </a>
+
+                        <a class="dropdown-item @if (Route::current()->getName() == 'stock.stock')
+                            active
+                        @endif" href="{{ route('stock.stock') }}"> Stock </a>
+
+                        </a>
+                      </div>
                     </li>
-                    
-                    <li class="nav-item @if (Route::current()->getName() == 'item.index' || Route::current()->getName() == 'category.index' || Route::current()->getName() == 'unit.index' || Route::current()->getName() == 'item.index') active
-                        
-                    @endif dropdown">
+                    @endif
+
+                    @if (auth()->user()->hasAnyPermission(['create unit', 'edit unit', 'delete unit','create category', 'edit category', 'delete category','create item', 'edit item', 'delete item']))
+                    <li class="nav-item @if (Route::current()->getName() == 'item.index' || Route::current()->getName() == 'category.index' || Route::current()->getName() == 'unit.index' || Route::current()->getName() == 'item.index') active @endif dropdown">
                       <a
                         class="nav-link dropdown-toggle"
                         href="#navbar-form"
@@ -71,6 +90,54 @@
                         </a>
                       </div>
                     </li>
+                    @endif
+
+                  @if (auth()->user()->hasAnyPermission(['create user', 'edit user', 'delete user','create role', 'edit role', 'delete role']))
+                      <li class="nav-item dropdown">
+                        <a
+                          class="nav-link dropdown-toggle"
+                          href="#navbar-layout"
+                          data-bs-toggle="dropdown"
+                          data-bs-auto-close="outside"
+                          role="button"
+                          aria-expanded="false"
+                        >
+                          <span class="nav-link-icon d-md-none d-lg-inline-block"
+                            ><!-- Download SVG icon from http://tabler.io/icons/icon/layout-2 -->
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              class="icon icon-1"
+                            >
+                              <path d="M4 4m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v1a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
+                              <path d="M4 13m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v3a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
+                              <path d="M14 4m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v3a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
+                              <path d="M14 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v1a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /></svg
+                          ></span>
+                          <span class="nav-link-title"> Management </span>
+                        </a>
+                        <div class="dropdown-menu">
+                          <div class="dropdown-menu-columns">
+                            <div class="dropdown-menu-column">
+                              @if (auth()->user()->hasAnyPermission(['create user', 'edit user', 'delete user']))
+                                <a class="dropdown-item" href="{{ route('users.index') }}"> Users </a>
+                              @endif
+
+                              @if (auth()->user()->hasAnyPermission(['create role', 'edit role', 'delete role']))
+                              <a class="dropdown-item" href="{{ route('roles.index') }}"> Role/Permissions </a>
+                              @endif
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                    @endif
                     {{-- <li class="nav-item dropdown">
                       <a
                         class="nav-link dropdown-toggle"

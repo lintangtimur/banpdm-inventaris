@@ -20,6 +20,9 @@ class UnitSeeder extends Seeder
             ['name' => 'Box'],
             ['name' => 'Meter'],
             ['name' => 'Pack'],
+            ['name' => 'Roll'],
+            ['name' => 'Set'],
+            ['name' => 'Unit'],
         ];
 
         foreach ($units as $unit) {
