@@ -50,10 +50,26 @@
         .signature p {
             margin: 0;
         }
+        /* Watermark styling */
+         .watermark {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+            font-size: 100px;
+            font-weight: bold;
+            color: #999999;
+            opacity: 0.08;
+            z-index: -1;
+            pointer-events: none;
+            font-family: 'Arial', sans-serif;
+            letter-spacing: 8px;
+        }
     </style>
 </head>
 <body>
 
+    <div class="watermark">CONFIDENTIAL</div>
     <h1>Laporan Transaksi Barang</h1>
     <div class="subheading">Sistem Inventaris Barang BAN-PDM Papua Barat</div>
 

@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "print": false,
+    "modify": false,
+    "annotate": false,
+    "formFill": false,
+    "extract": false
+  }
+}

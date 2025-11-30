@@ -273,7 +273,7 @@
                 <span class="avatar avatar-sm" style="background-image: url(./static/avatars/000m.jpg)"> </span>
                 <div class="d-none d-xl-block ps-2">
                   <div>{{ auth()->user()->name }}</div>
-                  <div class="mt-1 small text-secondary">{{ auth()->user()->roles->first()->name }}</div>
+                  {{-- <div class="mt-1 small text-secondary">{{ auth()->user()->roles->first()->name }}</div> --}}
                 </div>
               </a>
               <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
@@ -577,6 +577,8 @@
     <script src="{{ asset('js/tabler.min.js') }}" defer></script>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.0/lottie.min.js"></script>
+
     <!-- END GLOBAL MANDATORY SCRIPTS -->
     <!-- BEGIN DEMO SCRIPTS -->
     <script src="{{ asset('preview/js/demo.min.js') }}" defer></script>
